@@ -24,5 +24,8 @@ namespace Game.WPF
         {
             InitializeComponent();
         }
+
+        //test_Ambrus
+        int i;
     }
 }
