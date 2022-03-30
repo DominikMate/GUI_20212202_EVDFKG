@@ -28,5 +28,6 @@ namespace Game.WPF
         //test_Ambrus
         int i;
         int dd;
+        int v;
     }
 }
