@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game.WPF.Logic; //kivetel
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Game.WPF
         public MainWindow()
         {
             InitializeComponent();
+            GameLogic l = new GameLogic();
         }
     }
 }
