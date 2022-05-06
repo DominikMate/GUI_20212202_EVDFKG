@@ -9,6 +9,7 @@ namespace Game.WPF.Logic
 {
     public class GameLogic
     {
+        public double Angle { get; set; }
         public class MapData
         {
             public int enemyskill { get; set; }
@@ -27,7 +28,6 @@ namespace Game.WPF.Logic
             {
                 LoadMapData(item);
             }
-            ;
         }
         public enum GameItem
         {
@@ -95,6 +95,12 @@ namespace Game.WPF.Logic
                 default: return GameItem.space;
             }
         }
+        public enum Controls
+        {
+            Left, Right, Shoot
+        }
+
+        public void Control(Controls control) { }
 
         private string[] mapgenerator() { return null; }
     }
