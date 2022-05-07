@@ -8,8 +8,9 @@ using System.Windows;
 
 namespace Game.WPF.Logic
 {
-    public class GameLogic
+    public class GameLogic : IGameModel
     {
+        public event EventHandler Changed;
         public class MapData
         {
             public int enemyskill { get; set; }
@@ -35,7 +36,7 @@ namespace Game.WPF.Logic
         }
 
         private int maps;
-        public GameItem[,] GameMatrix { get; set; }     //ebben tárolódik az enemy, player, jutalom szívek, pozíciói
+        //public GameItem[,] GameMatrix { get; set; }     //ebben tárolódik az enemy, player, jutalom szívek, pozíciói
         public int Maps { get => maps; set => maps = value; }
 
         public double PlayerPos { get; set; }
@@ -57,7 +58,7 @@ namespace Game.WPF.Logic
         }
         private void LoadMapData(string path)
         {
-            MapData newmap=new MapData();
+            MapData newmap = new MapData();
             string[] lines = File.ReadAllLines(path);
             for (int i = 0; i < lines.Length; i++)
             {
@@ -86,17 +87,17 @@ namespace Game.WPF.Logic
             MapDatas.Add(newmap);
         }
 
-        private GameItem ConvertToEnum(char c)
-        {
-            switch (c)
-            {
-                case 'p': return GameItem.player;
-                case 'e': return GameItem.enemy;
-                case 'l': return GameItem.laser;
-                case 'd': return GameItem.heart;
-                default: return GameItem.space;
-            }
-        }
+        //private GameItem ConvertToEnum(char c)
+        //{
+        //    switch (c)
+        //    {
+        //        case 'p': return GameItem.player;
+        //        case 'e': return GameItem.enemy;
+        //        case 'l': return GameItem.laser;
+        //        case 'd': return GameItem.heart;
+        //        default: return GameItem.space;
+        //    }
+        //}
         public enum Controls
         {
             Left, Right, Shoot
@@ -107,14 +108,15 @@ namespace Game.WPF.Logic
             switch (control)
             {
                 case Controls.Left:
-                    PlayerPos -= 10;
+                    PlayerPos -= 20;
                     break;
                 case Controls.Right:
-                    PlayerPos -= 10;
+                    PlayerPos += 20;
                     break;
                 case Controls.Shoot:
                     break;
             }
+            Changed?.Invoke(this, null);
         }
 
         private string[] mapgenerator(int X_coor, int Y_coor)
