@@ -44,5 +44,10 @@ namespace Game.WPF.Pages
         {
 
         }
+
+        private void BackToMenu(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
+        }
     }
 }

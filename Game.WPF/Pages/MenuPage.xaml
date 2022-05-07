@@ -3,7 +3,6 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:gif="clr-namespace:XamlAnimatedGif.Decoding;assembly=XamlAnimatedGif"
       xmlns:local="clr-namespace:Game.WPF.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
@@ -50,13 +49,13 @@
                 </Button.RenderTransform>
             </Button>
         </StackPanel>
-        <MediaElement  Source="/texture/logo.gif" HorizontalAlignment="Center" Height="212" VerticalAlignment="Top" Width="1060" Margin="0,27,0,0"/>
+        <MediaElement  Source="/texture/logo.gif" LoadedBehavior="Play" HorizontalAlignment="Center" Height="212" VerticalAlignment="Top" Width="1060" Margin="0,27,0,0"/>
 
         <Grid.Background>
             <VisualBrush>
                 <VisualBrush.Visual>
                     <StackPanel>
-                        <MediaElement Source="/texture/menubackground másolata.wmv" Opacity="0.3"></MediaElement>
+                        <MediaElement Source="/texture/menubackground.wmv" LoadedBehavior="Play"></MediaElement>
                     </StackPanel>
                 </VisualBrush.Visual>
                 </VisualBrush>
