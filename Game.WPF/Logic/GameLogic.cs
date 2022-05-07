@@ -4,12 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Game.WPF.Logic
 {
     public class GameLogic
     {
-        public double Angle { get; set; }
         public class MapData
         {
             public int enemyskill { get; set; }
@@ -38,7 +38,9 @@ namespace Game.WPF.Logic
         public GameItem[,] GameMatrix { get; set; }     //ebben tárolódik az enemy, player, jutalom szívek, pozíciói
         public int Maps { get => maps; set => maps = value; }
 
-        public List<MapData> MapDatas; //a pályák generálásához szükséges adatokat tartalmazza
+        public double PlayerPos { get; set; }
+
+        public List<MapData> MapDatas { get; set; } //a pályák generálásához szükséges adatokat tartalmazza
 
         private void CompletedLevels(string path) //ez a menüben lévő pályákat kéri be, hogy melyek azok amiket már megcsináltunk
         {
@@ -100,8 +102,24 @@ namespace Game.WPF.Logic
             Left, Right, Shoot
         }
 
-        public void Control(Controls control) { }
+        public void Control(Controls control)
+        {
+            switch (control)
+            {
+                case Controls.Left:
+                    PlayerPos -= 10;
+                    break;
+                case Controls.Right:
+                    PlayerPos -= 10;
+                    break;
+                case Controls.Shoot:
+                    break;
+            }
+        }
 
-        private string[] mapgenerator() { return null; }
+        private string[] mapgenerator(int X_coor, int Y_coor)
+        {
+            return null;
+        }
     }
 }
