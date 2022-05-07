@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Game.WPF.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="OptionsPage"
       FontFamily="impact">
 
@@ -15,7 +15,7 @@
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="100"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="Options" Foreground="White" RenderTransformOrigin="0.5,0.5">
+        <TextBlock Grid.Row="0" FontSize="200"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="Options" Foreground="White" RenderTransformOrigin="0.5,0.5">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -27,7 +27,7 @@
 
 
 
-        <TextBlock Grid.Row="1" FontSize="30" Text="Skin:" Foreground="White" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,0,660,0">
+        <TextBlock Grid.Row="1" FontSize="80" Text="Skin:" Foreground="White" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,0,1473,0" Height="126">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -37,29 +37,46 @@
                 </TransformGroup>
             </TextBlock.RenderTransform></TextBlock>
 
-        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="25,0,0,0" Height="140" RenderTransformOrigin="0.5,0.5">
-            <Button Background="Gray" BorderBrush="Black" Height="130" Width="130" Foreground="White" Margin="30" Click="SkinDark">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="-25"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-                <Image Source="/texture/player1.bmp" />
-            </Button>
-        </StackPanel>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="25,0,0,0" Height="140" RenderTransformOrigin="0.5,0.5">
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Height="322" RenderTransformOrigin="0.5,0.5" Width="404">
             <StackPanel.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform/>
-                    <TranslateTransform X="0"/>
+                    <TranslateTransform Y="20"/>
                 </TransformGroup>
             </StackPanel.RenderTransform>
-            <Button Background="Gray" BorderBrush="Black" Height="130" Width="130" Foreground="White" Margin="30" Click="SkinWhite">
+            <Button Background="Gray" BorderBrush="Black" Height="270" Width="290" Foreground="White" Margin="30" Click="SkinDark">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-20"/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+                <Image Source="/texture/player1.bmp" RenderTransformOrigin="0.52,0.484" Height="267" Width="283" >
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0"/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Right"  Height="322" VerticalAlignment="Top" Margin="0,0,312,0"  RenderTransformOrigin="0.5,0.5">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0" Y="25"/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <Button Background="Gray" BorderBrush="Black" Height="270" Width="290" Foreground="White" Margin="30" Click="SkinWhite">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -68,11 +85,11 @@
                         <TranslateTransform Y="-25"/>
                     </TransformGroup>
                 </Button.RenderTransform>
-                <Image Source="/texture/player2.bmp" />
+                <Image Source="/texture/player2.bmp" Height="267" Width="283" />
             </Button>
         </StackPanel>
 
-        <TextBlock Grid.Row="2" FontSize="30" Text="Volume:" Foreground="White" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,0,660,0">
+        <TextBlock Grid.Row="2" FontSize="80" Text="Volume:" Foreground="White" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="0,0,1242,0" Height="96">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -82,8 +99,8 @@
                 </TransformGroup>
             </TextBlock.RenderTransform></TextBlock>
 
-        <Slider Grid.Row="2" Name="volumeSlider" VerticalAlignment="Center" ValueChanged="volumeSlider_ValueChanged" 
-       Minimum="0" Maximum="10" Value="0.5" Width="400" Margin="361,0,39,0" RenderTransformOrigin="0.5,0.5">
+        <Slider Grid.Row="2" Name="volumeSlider" VerticalAlignment="Center" ValueChanged="volumeSlider_ValueChanged" BorderThickness="45" 
+       Minimum="0" Maximum="10" Value="1" Margin="411,0,645,0" RenderTransformOrigin="1,1" Height="150">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -94,7 +111,7 @@
             </Slider.RenderTransform>
         </Slider>
 
-        <Button Background="Transparent" BorderBrush="Black" Content="Back to Menu" Height="30" Width="200" Foreground="White" Margin="30" Click="Button_Click" RenderTransformOrigin="0.5,0.5">
+        <Button Background="Transparent" BorderBrush="Black" FontSize="50" Content="Back to Menu" Foreground="White" Margin="824,266,800,10" Click="Button_Click" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

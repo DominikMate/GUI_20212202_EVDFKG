@@ -26,8 +26,6 @@ namespace Game.WPF
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             this.navWindow = new NavigationWindow();
-            this.navWindow.Height = 1080;
-            this.navWindow.Width = 1920;
             this.navWindow.WindowState = WindowState.Maximized;
             this.navWindow.ResizeMode = ResizeMode.CanMinimize;
             this.navWindow.ShowsNavigationUI = false;
