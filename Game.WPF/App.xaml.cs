@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Game.WPF.Pages;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace Game.WPF
 {
@@ -13,5 +15,27 @@ namespace Game.WPF
     /// </summary>
     public partial class App : Application
     {
+        private NavigationWindow navWindow;
+
+        public NavigationWindow NavWindow
+        {
+            get { return this.navWindow; }
+            set { this.navWindow = value; }
+        }
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            this.navWindow = new NavigationWindow();
+            this.navWindow.Height = 1080;
+            this.navWindow.Width = 1920;
+            this.navWindow.WindowState = WindowState.Maximized;
+            this.navWindow.ResizeMode = ResizeMode.CanMinimize;
+            this.navWindow.ShowsNavigationUI = false;
+
+            var page = new LevelPage();
+            this.navWindow.Navigate(page);
+            this.navWindow.Show();
+
+        }
     }
 }

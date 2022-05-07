@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="MenuPage"
-      FontFamily="04b"
+      FontFamily="04b 30"
       FontSize="36">
 
     <Grid>
@@ -61,8 +61,6 @@
                 </VisualBrush.Visual>
                 </VisualBrush>
         </Grid.Background>
-
-
 
     </Grid>
 </Page>

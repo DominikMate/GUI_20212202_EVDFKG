@@ -28,12 +28,12 @@ namespace Game.WPF.Pages
 
         private void Levels_Click(object sender, RoutedEventArgs e)
         {
-            /*this.NavigationService.Navigate(new GamePage(this.control));*/
+            this.NavigationService.Navigate(new LevelPage());
         }
 
         private void Options_Click(object sender, RoutedEventArgs e)
         {
-            /*this.NavigationService.Navigate(new OptionsPage());*/
+            this.NavigationService.Navigate(new OptionsPage());
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

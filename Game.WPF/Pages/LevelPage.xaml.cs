@@ -25,6 +25,10 @@ namespace Game.WPF.Pages
             InitializeComponent();
         }
 
+        private void BackToMenu(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
+        }
         private void Level1_Click(object sender, RoutedEventArgs e)
         {
 
@@ -45,9 +49,34 @@ namespace Game.WPF.Pages
 
         }
 
-        private void BackToMenu(object sender, RoutedEventArgs e)
+        private void Level5_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.GoBack();
+
+        }
+
+        private void Level6_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Level7_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Level8_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Level9_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Level10_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

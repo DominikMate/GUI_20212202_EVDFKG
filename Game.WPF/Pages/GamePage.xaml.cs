@@ -20,10 +20,10 @@ namespace Game.WPF.Pages
     /// </summary>
     public partial class GamePage : Page
     {
-        /*public GamePage(GameControl control)
+        public GamePage()
         {
             InitializeComponent();
-        }*/
+        }
 
         private void BackToMenu(object sender, RoutedEventArgs e)
         {

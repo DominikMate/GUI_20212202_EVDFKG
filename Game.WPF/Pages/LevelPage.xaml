@@ -5,9 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Game.WPF.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="LevelPage"
-      FontFamily="impact">
+      FontFamily="04b 30">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -25,82 +25,104 @@
                     <TranslateTransform Y="2"/>
                 </TransformGroup>
             </TextBlock.RenderTransform></TextBlock>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,0,0,0" Height="140" RenderTransformOrigin="0.5,0.5">
-            <StackPanel.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform X="45" Y="10"/>
-                </TransformGroup>
-            </StackPanel.RenderTransform>
-            <Button Background="Gray" BorderBrush="Black" Content="Level 1" Height="60" Width="200" Foreground="White" Margin="30" Click="Level1_Click" RenderTransformOrigin="0.5,0.5">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="-15"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-            </Button>
-        </StackPanel>
-        <StackPanel Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="25,0,0,0" Height="140" RenderTransformOrigin="0.5,0.5">
-            <StackPanel.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-55" Y="10"/>
-                </TransformGroup>
-            </StackPanel.RenderTransform>
-            <Button Background="Gray" BorderBrush="Black" Content="Level 2" Height="60" Width="200" Foreground="White" Margin="30" Click="Level2_Click" RenderTransformOrigin="0.5,0.5">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="-15"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-            </Button>
-        </StackPanel>
 
-        <StackPanel Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,0,0,0" Height="140" RenderTransformOrigin="0.5,0.5">
-            <StackPanel.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform X="45" Y="-10"/>
-                </TransformGroup>
-            </StackPanel.RenderTransform>
-            <Button Background="Gray" BorderBrush="Black" Content="Level 3" Height="60" Width="200" Foreground="White" Margin="30" Click="Level3_Click"></Button>
-        </StackPanel>
-        <StackPanel Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="25,0,0,0" Height="140" RenderTransformOrigin="0.5,0.5">
-            <StackPanel.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-55" Y="-10"/>
-                </TransformGroup>
-            </StackPanel.RenderTransform>
-            <Button Background="Gray" BorderBrush="Black" Content="Level 4" Height="60" Width="200" Foreground="White" Margin="30" Click="Level4_Click"></Button>
-        </StackPanel>
 
-        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-            <Button Background="Transparent" BorderBrush="Black" Content="Back to Menu" Height="30" Width="200" Foreground="White" Margin="30" Click="BackToMenu" RenderTransformOrigin="0.5,0.5">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="30" X="7.5"/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-            </Button>
-        </StackPanel>
+
+
+        <Button Content="Level 1" Background="Gray" Foreground="White"  Margin="839,0,851,0" Grid.Row="1" VerticalAlignment="Center" Height="60" Width="200"  Click="Level1_Click" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-500"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Level 2" Background="Gray" Foreground="White"  Margin="440,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="60" Width="200"  Click="Level2_Click" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-470"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Level 3" Background="Gray" Foreground="White"  Grid.Row="1" VerticalAlignment="Center" Height="60" Width="200"  Click="Level3_Click" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Level 4" Background="Gray" Foreground="White"  Margin="1206,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="60" Width="200"  Click="Level4_Click" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-360"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Level 5" Background="Gray" Foreground="White"  Margin="1588,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="60" Width="200"  Click="Level5_Click" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-300"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+
+        <Button Content="Level 6" Background="Gray" Foreground="White"  Margin="48,0,0,0" Grid.Row="2" VerticalAlignment="Center" Height="60" Width="200"  Click="Level6_Click" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-801"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Level 7" Background="Gray" Foreground="White"  Margin="440,0,0,0" Grid.Row="2" VerticalAlignment="Center" Height="60" Width="200"  Click="Level7_Click" RenderTransformOrigin="0.5,0.5" >
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-610"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Level 8" Background="Gray" Foreground="White"  Grid.Row="2" VerticalAlignment="Center" Height="60" Width="200"  Click="Level8_Click"/>
+        <Button Content="Level 9" Background="Gray" Foreground="White"  Margin="1206,0,0,0" Grid.Row="2" VerticalAlignment="Center" Height="60" Width="200"  Click="Level9_Click" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-220"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Button Content="Level 10" Background="Gray" Foreground="White"  Margin="1588,0,0,0" Grid.Row="2" VerticalAlignment="Center" Height="60" Width="200"  Click="Level10_Click" RenderTransformOrigin="0.5,0.5">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-37"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+
+        <Button Background="Transparent" Foreground="White" Content="Back to Menu" HorizontalAlignment="Center" Height="65" Margin="0,295,0,0" Grid.Row="2" VerticalAlignment="Top" Width="340"/>
 
         <Grid.Background>
             <VisualBrush>
