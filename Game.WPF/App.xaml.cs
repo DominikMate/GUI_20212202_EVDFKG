@@ -29,6 +29,7 @@ namespace Game.WPF
             this.navWindow.Height = 1080;
             this.navWindow.Width = 1920;
 
+            this.navWindow.ResizeMode = ResizeMode.CanMinimize;
             this.navWindow.ShowsNavigationUI = false;
 
             var page = new MenuPage();

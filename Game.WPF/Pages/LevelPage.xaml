@@ -86,7 +86,7 @@
                     <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform/>
-                    <TranslateTransform X="-801"/>
+                    <TranslateTransform X="-540"/>
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
@@ -96,7 +96,7 @@
                     <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform/>
-                    <TranslateTransform X="-610"/>
+                    <TranslateTransform X="-461"/>
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
@@ -107,7 +107,7 @@
                     <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform/>
-                    <TranslateTransform X="-220"/>
+                    <TranslateTransform X="-360"/>
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
@@ -117,7 +117,7 @@
                     <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform/>
-                    <TranslateTransform X="-37"/>
+                    <TranslateTransform X="-300"/>
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
