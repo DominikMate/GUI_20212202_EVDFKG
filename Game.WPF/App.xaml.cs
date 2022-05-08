@@ -29,8 +29,10 @@ namespace Game.WPF
             this.navWindow.WindowState = WindowState.Maximized;
             this.navWindow.ResizeMode = ResizeMode.CanMinimize;
             this.navWindow.ShowsNavigationUI = false;
+            this.navWindow.Height = 1080;
+            this.navWindow.Width = 1920;
 
-            var page = new LevelPage();
+            var page = new MenuPage();
             this.navWindow.Navigate(page);
             this.navWindow.Show();
 
