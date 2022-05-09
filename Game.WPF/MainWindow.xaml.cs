@@ -21,10 +21,12 @@ namespace Game.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        GameLogic logic;
         public MainWindow()
         {
             InitializeComponent();
-            GameLogic l = new GameLogic();
+            logic = new GameLogic();
+            display.SetupModel(logic);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -35,6 +37,24 @@ namespace Game.WPF
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Left:
+                    logic.Control(GameLogic.Controls.Left);
+                    break;
+                case Key.Right:
+                    logic.Control(GameLogic.Controls.Right);
+                    break;
+                case Key.Space:
+                    logic.Control(GameLogic.Controls.Shoot);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

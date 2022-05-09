@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game.WPF.Logic;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,11 +11,19 @@ using System.Windows.Media.Imaging;
 
 namespace Game.WPF.Renderer
 {
-    internal class Display:FrameworkElement
+    internal class Display : FrameworkElement
     {
         Size area;
         Size PlayerSize;
-        MediaPlayer background;
+        MediaPlayer background; //
+        IGameModel model;
+
+        public void SetupModel(IGameModel model)
+        {
+            this.model = model;
+            this.model.Changed += (sender, eventargs) => this.InvalidateVisual();
+        }
+
         public void SetupSizes(Size area)
         {
             this.area = area;
@@ -46,10 +55,10 @@ namespace Game.WPF.Renderer
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
-            if (area.Width>0 && area.Height>0)
+            if (area.Width>0 && area.Height>0 && model!=null)
             {
                 drawingContext.DrawVideo(background, new Rect(0, 0, area.Width, area.Height));
-                drawingContext.DrawRectangle(ShipBrush,null, new Rect((area.Width /2)-(PlayerSize.Width / 2), (area.Height * 0.9) -(PlayerSize.Height / 2), PlayerSize.Width, PlayerSize.Height));
+                drawingContext.DrawRectangle(ShipBrush,null, new Rect((area.Width /2)-(PlayerSize.Width / 2)+model.PlayerPos, (area.Height * 0.9) -(PlayerSize.Height / 2), PlayerSize.Width, PlayerSize.Height));
             }
         }
     }
