@@ -8,6 +8,48 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="texture\darthpath_menu.mp3" />
+    <None Remove="texture\enemy1.bmp" />
+    <None Remove="texture\ingamebackground.wmv" />
+    <None Remove="texture\laser1.bmp" />
+    <None Remove="texture\laser2.bmp" />
+    <None Remove="texture\logo.gif" />
+    <None Remove="texture\menubackground.wmv" />
+    <None Remove="texture\player1.bmp" />
+    <None Remove="texture\player2.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="texture\darthpath_menu.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="texture\enemy1.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="texture\ingamebackground.wmv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="texture\laser1.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="texture\laser2.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="texture\logo.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="texture\menubackground.wmv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="texture\player1.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="texture\player2.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="XamlAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 

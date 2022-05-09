@@ -111,7 +111,7 @@
             </Slider.RenderTransform>
         </Slider>
 
-        <Button Background="Transparent" BorderBrush="Black" FontSize="50" Content="Back to Menu" Foreground="White" Margin="824,266,800,10" Click="Button_Click" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+        <Button Background="Transparent" BorderBrush="Black" Content="Back to Menu" Height="30" Width="200" Foreground="White" Margin="30" Click="BackToMenu" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -126,7 +126,7 @@
             <VisualBrush>
                 <VisualBrush.Visual>
                     <StackPanel>
-                        <MediaElement Source="/texture/menubackground másolata.wmv" Opacity="0.3"></MediaElement>
+                        <MediaElement Source="/texture/menubackground.wmv" Opacity="0.3"></MediaElement>
                     </StackPanel>
                 </VisualBrush.Visual>
             </VisualBrush>
