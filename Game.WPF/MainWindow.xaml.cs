@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Game.WPF
 {
@@ -22,11 +23,24 @@ namespace Game.WPF
     public partial class MainWindow : Window
     {
         GameLogic logic;
+        Player player;
         public MainWindow()
         {
             InitializeComponent();
             logic = new GameLogic();
-            display.SetupModel(logic);
+            player = new Player();
+            display.SetupModel(logic,player);
+
+            DispatcherTimer dt = new DispatcherTimer();
+            dt.Interval = TimeSpan.FromMilliseconds(50);
+
+            dt.Tick += Dt_Tick;
+            dt.Start();
+        }
+
+        private void Dt_Tick(object? sender, EventArgs e)
+        {
+            player.TimeStep(new Size(grid.ActualWidth, grid.ActualHeight));
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -37,20 +51,35 @@ namespace Game.WPF
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
+            player.OutOfBoundsCheck(new Size(grid.ActualWidth, grid.ActualHeight));
+            player.TimeStep(new Size(grid.ActualWidth, grid.ActualHeight));
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
+            //if (e.IsRepeat) return;
             switch (e.Key)
             {
                 case Key.Left:
-                    logic.Control(GameLogic.Controls.Left);
+                    player.Control(Player.Controls.Left, new Size(grid.ActualWidth, grid.ActualHeight));
                     break;
                 case Key.Right:
-                    logic.Control(GameLogic.Controls.Right);
+                    player.Control(Player.Controls.Right, new Size(grid.ActualWidth, grid.ActualHeight));
                     break;
                 case Key.Space:
-                    logic.Control(GameLogic.Controls.Shoot);
+                    player.Control(Player.Controls.Shoot, new Size(grid.ActualWidth, grid.ActualHeight));
+                    player.NextShoot = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Space:
+                    player.NextShoot = true;
                     break;
                 default:
                     break;

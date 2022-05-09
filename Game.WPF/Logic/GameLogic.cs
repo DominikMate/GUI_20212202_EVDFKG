@@ -10,7 +10,7 @@ namespace Game.WPF.Logic
 {
     public class GameLogic : IGameModel
     {
-        public event EventHandler Changed;
+        Size area;
         public class MapData
         {
             public int enemyskill { get; set; }
@@ -38,8 +38,6 @@ namespace Game.WPF.Logic
         private int maps;
         //public GameItem[,] GameMatrix { get; set; }     //ebben tárolódik az enemy, player, jutalom szívek, pozíciói
         public int Maps { get => maps; set => maps = value; }
-
-        public double PlayerPos { get; set; }
 
         public List<MapData> MapDatas { get; set; } //a pályák generálásához szükséges adatokat tartalmazza
 
@@ -98,30 +96,11 @@ namespace Game.WPF.Logic
         //        default: return GameItem.space;
         //    }
         //}
-        public enum Controls
-        {
-            Left, Right, Shoot
-        }
 
-        public void Control(Controls control)
-        {
-            switch (control)
-            {
-                case Controls.Left:
-                    PlayerPos -= 20;
-                    break;
-                case Controls.Right:
-                    PlayerPos += 20;
-                    break;
-                case Controls.Shoot:
-                    break;
-            }
-            Changed?.Invoke(this, null);
-        }
 
-        private string[] mapgenerator(int X_coor, int Y_coor)
+        public void SetupSizes(Size area)
         {
-            return null;
+            this.area = area;
         }
     }
 }

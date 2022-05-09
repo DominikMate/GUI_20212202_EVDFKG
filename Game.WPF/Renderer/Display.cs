@@ -15,13 +15,15 @@ namespace Game.WPF.Renderer
     {
         Size area;
         Size PlayerSize;
-        MediaPlayer background; //
+        MediaPlayer background;
         IGameModel model;
+        IPlayer player;
 
-        public void SetupModel(IGameModel model)
+        public void SetupModel(IGameModel model, IPlayer player)
         {
             this.model = model;
-            this.model.Changed += (sender, eventargs) => this.InvalidateVisual();
+            this.player = player;
+            this.player.Changed += (sender, eventargs) => this.InvalidateVisual();
         }
 
         public void SetupSizes(Size area)
@@ -58,7 +60,11 @@ namespace Game.WPF.Renderer
             if (area.Width>0 && area.Height>0 && model!=null)
             {
                 drawingContext.DrawVideo(background, new Rect(0, 0, area.Width, area.Height));
-                drawingContext.DrawRectangle(ShipBrush,null, new Rect((area.Width /2)-(PlayerSize.Width / 2)+model.PlayerPos, (area.Height * 0.9) -(PlayerSize.Height / 2), PlayerSize.Width, PlayerSize.Height));
+                drawingContext.DrawRectangle(ShipBrush,null, new Rect((area.Width /2)-(PlayerSize.Width / 2)+ player.PlayerPos, (area.Height * 0.9) -(PlayerSize.Height / 2), PlayerSize.Width, PlayerSize.Height));
+                foreach (var item in player.Lasers)
+                {
+                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "laser1.bmp"), UriKind.RelativeOrAbsolute))),null,new Rect(item.LaserPoint.X,item.LaserPoint.Y, (area.Width / 96), (area.Height / 16)));
+                }
             }
         }
     }

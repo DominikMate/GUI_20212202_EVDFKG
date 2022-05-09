@@ -7,7 +7,5 @@ namespace Game.WPF.Logic
     {
         List<GameLogic.MapData> MapDatas { get; set; }
         int Maps { get; set; }
-        double PlayerPos { get; set; }
-        event EventHandler Changed;
     }
 }
