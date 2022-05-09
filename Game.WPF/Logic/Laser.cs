@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace Game.WPF.Logic
 {
-    internal class Laser
+    public class Laser
     {
         public Laser(Vector speed, Point laserPoint)
         {

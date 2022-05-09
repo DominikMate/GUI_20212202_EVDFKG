@@ -7,38 +7,32 @@ using System.Windows;
 
 namespace Game.WPF.Logic
 {
-    internal class Enemy
+    public class Enemy
     {
         Random random;
         Size area;
-        int Skill;
+        int Skill=1;
         public Point PEnemy { get; set; }
         public Vector Speed { get; set; }
-        public Enemy(Point penemy, Vector speed, int skill)
+        public Enemy(Size area, int skill)
         {
-            PEnemy = penemy;
-            Speed = speed;
-            Skill = skill;
             random = new Random();
-        }
-
-        public void SetupSizes(Size area)
-        {
             this.area = area;
+            this.Skill = skill;
+            SpawnRandomizer();
         }
-
-        /*private int SpawnRandomizer(int skill)
+        public void SpawnRandomizer()
         {
-
-        }*/
+            PEnemy = new Point(random.Next(1, (int)area.Width-50), random.Next(-20, -1));
+            Speed = new Vector(0, random.Next(Skill * 5, Skill * 10));
+        }
 
         public bool Move(Size area)
         {
             Point newPEnemy =
-        new Point(newPEnemy.X, newPEnemy.Y + (int)Speed.Y);
+        new Point(PEnemy.X, PEnemy.Y + (int)Speed.Y);
             if (newPEnemy.X >= 0 &&
-                newPEnemy.X <= area.Width &&
-                newPEnemy.Y >= 0 &&
+                newPEnemy.X <= area.Width-(area.Width*0.1) &&
                 newPEnemy.Y <= area.Height)
             {
                 PEnemy = newPEnemy;

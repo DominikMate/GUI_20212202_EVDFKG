@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\enemy1.bmp" />
     <None Remove="Images\ingamebackground.mp4" />
     <None Remove="Images\laser1.bmp" />
     <None Remove="Images\laser2.bmp" />
@@ -16,9 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\enemy1.bmp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Images\ingamebackground.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

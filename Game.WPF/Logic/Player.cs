@@ -7,14 +7,16 @@ using System.Windows;
 
 namespace Game.WPF.Logic
 {
-    internal class Player : IPlayer
+    public class Player : IPlayer
     {
+        public int HP { get; set; }
         public List<Laser> Lasers { get; set; }
         public bool NextShoot { get; set; }
         Size PlayerSize;
         bool leftright;
         public Player()
         {
+            HP = 3;
             Lasers = new List<Laser>();
             Speed = new Vector(35,0);
             NextShoot = true;

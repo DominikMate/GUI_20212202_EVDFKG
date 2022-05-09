@@ -31,6 +31,8 @@ namespace Game.WPF.Renderer
             this.area = area;
             this.PlayerSize.Width = area.Width/6;
             this.PlayerSize.Height = area.Height / 6;
+            this.model.SetupSizes(this.area);
+            this.model.SetupPlayer(this.player);
             this.InvalidateVisual();
         }
         public Brush ShipBrush
@@ -38,6 +40,13 @@ namespace Game.WPF.Renderer
             get 
             {
                 return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "player1.bmp"),UriKind.RelativeOrAbsolute)));
+            }
+        }
+        public Brush EnemyBrush
+        {
+            get
+            {
+                return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "enemy1.bmp"), UriKind.RelativeOrAbsolute)));
             }
         }
         public Display()
@@ -64,6 +73,10 @@ namespace Game.WPF.Renderer
                 foreach (var item in player.Lasers)
                 {
                     drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "laser1.bmp"), UriKind.RelativeOrAbsolute))),null,new Rect(item.LaserPoint.X,item.LaserPoint.Y, (area.Width / 96), (area.Height / 16)));
+                }
+                foreach (var item in model.Enemys)
+                {
+                    drawingContext.DrawRectangle(EnemyBrush, null, new Rect(item.PEnemy.X, item.PEnemy.Y, PlayerSize.Width, PlayerSize.Height));
                 }
             }
         }

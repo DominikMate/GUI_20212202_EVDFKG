@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -28,6 +29,7 @@ namespace Game.WPF
         {
             InitializeComponent();
             logic = new GameLogic();
+            logic.OneDamage += Logic_OneDamage;   
             player = new Player();
             display.SetupModel(logic,player);
 
@@ -38,13 +40,23 @@ namespace Game.WPF
             dt.Start();
         }
 
+        private void Logic_OneDamage(object? sender, EventArgs e)
+        {
+            if ((sender as GameLogic).Player.HP <= 0)
+            {
+                MessageBox.Show("Vége");
+            }
+        }
+
         private void Dt_Tick(object? sender, EventArgs e)
         {
             player.TimeStep(new Size(grid.ActualWidth, grid.ActualHeight));
+            logic.TimeStep(new Size(grid.ActualWidth, grid.ActualHeight));
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
         }
 
@@ -53,6 +65,7 @@ namespace Game.WPF
             display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
             player.OutOfBoundsCheck(new Size(grid.ActualWidth, grid.ActualHeight));
             player.TimeStep(new Size(grid.ActualWidth, grid.ActualHeight));
+            logic.TimeStep(new Size(grid.ActualWidth, grid.ActualHeight));
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

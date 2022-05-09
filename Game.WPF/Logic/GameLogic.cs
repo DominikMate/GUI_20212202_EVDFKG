@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,7 +11,12 @@ namespace Game.WPF.Logic
 {
     public class GameLogic : IGameModel
     {
+        public event EventHandler Changed;
+        public event EventHandler OneDamage;
         Size area;
+
+        public List<Enemy> Enemys { get; set; }
+        public IPlayer Player;
         public class MapData
         {
             public int enemyskill { get; set; }
@@ -30,10 +36,10 @@ namespace Game.WPF.Logic
                 LoadMapData(item);
             }
         }
-        public enum GameItem
-        {
-            player, enemy, space, laser, heart
-        }
+        //public enum GameItem
+        //{
+        //    player, enemy, space, laser, heart
+        //}
 
         private int maps;
         //public GameItem[,] GameMatrix { get; set; }     //ebben tárolódik az enemy, player, jutalom szívek, pozíciói
@@ -100,7 +106,58 @@ namespace Game.WPF.Logic
 
         public void SetupSizes(Size area)
         {
+
+            SoundPlayer splayer = new SoundPlayer();
+            splayer.SoundLocation = "gameplaysong.wav";
+            splayer.PlayLooping();
+
             this.area = area;
+            Enemys = new List<Enemy>();
+            for (int i = 0; i < 4* MapDatas[maps].enemyskill; i++)
+            {
+                Enemys.Add(new Enemy(area, MapDatas[maps].enemyskill));
+            }
+        }
+        public void SetupPlayer(IPlayer player)
+        {
+            this.Player = player;
+        }
+        public void TimeStep(Size area)
+        {
+            for (int i = 0; i < Enemys.Count; i++)
+            {
+                bool inside = Enemys[i].Move(area);
+                if (!inside)
+                {
+                    Enemys.RemoveAt(i);
+                    Enemys.Add(new Enemy(area, MapDatas[maps].enemyskill));
+                }
+                else
+                {
+                    Rect enemyRect = new Rect(Enemys[i].PEnemy.X + 50, Enemys[i].PEnemy.Y, (area.Width / 10), (area.Height / 6));
+                    Rect shipRect = new Rect((area.Width / 2) - ((area.Width / 6) / 2) + Player.PlayerPos, (area.Height * 0.9) - ((area.Height / 6) / 2), (area.Width / 6), (area.Height / 6));
+                    if (enemyRect.IntersectsWith(shipRect))
+                    {
+                        Enemys.RemoveAt(i);
+                        Enemys.Add(new Enemy(area, MapDatas[maps].enemyskill));
+                        Player.HP--;
+                        OneDamage?.Invoke(this, null);
+
+                    }
+                    foreach (var item in Player.Lasers.ToList())
+                    {
+                        Rect laserRect = new Rect(item.LaserPoint.X, item.LaserPoint.Y, (area.Width / 96) , (area.Height / 16));
+
+                        if (laserRect.IntersectsWith(enemyRect))
+                        {
+                            Player.Lasers.Remove(item);
+                            Enemys.RemoveAt(i);
+                            Enemys.Add(new Enemy(area, MapDatas[maps].enemyskill));
+                        }
+                    }
+                }
+            }
+            Changed?.Invoke(this, null);
         }
     }
 }
