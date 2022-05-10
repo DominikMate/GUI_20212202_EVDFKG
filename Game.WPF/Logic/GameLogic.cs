@@ -148,21 +148,7 @@ namespace Game.WPF.Logic
             Enemys = new List<Enemy>();
             miniEnemys = new List<Enemy>();
             bossEnemys = new List<Enemy>();
-            /*if (MapDatas[loadedlevel].miniboss && timer.TimerPos > random.Next(3000,8000))
-            {
-                for (int i = 0; i < MapDatas[loadedlevel].enemyskill; i++)
-                {
-                    miniEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill, MapDatas[loadedlevel].miniboss, false));
-                }
-            }
-            if (MapDatas[loadedlevel].boss && timer.TimerPos > 80000)
-            {
-                for (int i = 0; i < MapDatas[loadedlevel].enemyskill; i++)
-                {
-                    bossEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill, false, MapDatas[loadedlevel].boss));
-                }
-            timer.TimerPos != 0 
-            }*/
+
             for (int i = 0; i < MapDatas[loadedlevel].enemyskill; i++)
             {
                 Enemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill, false, false));
@@ -174,10 +160,20 @@ namespace Game.WPF.Logic
         }
         public void TimeStep(Size area)
         {
-            /*if (MapDatas[loadedlevel].miniboss&&timer.TimerPos>30000 && timer.TimerPos < 60000)
+            if (MapDatas[loadedlevel].miniboss && timer.TimerPos == 12000 && timer.TimerPos == 40000)
             {
-                Enemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill));
-            }*/
+                for (int i = 0; i < MapDatas[loadedlevel].enemyskill; i++)
+                {
+                    miniEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill, MapDatas[loadedlevel].miniboss, false));
+                }
+            }
+            if (MapDatas[loadedlevel].boss && timer.TimerPos == 80000)
+            {
+                for (int i = 0; i < MapDatas[loadedlevel].enemyskill; i++)
+                {
+                    bossEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill, false, MapDatas[loadedlevel].boss));
+                }
+            }
             for (int i = 0; i < Enemys.Count; i++)
             {
                 bool inside = Enemys[i].Move(area);

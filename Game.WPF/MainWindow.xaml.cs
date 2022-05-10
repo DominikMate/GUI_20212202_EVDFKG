@@ -53,7 +53,6 @@ namespace Game.WPF
             (sender as GameLogic).Player.HP-=3;
             if ((sender as GameLogic).Player.HP <= 0)
             {
-                RestartApp();
             }
         }
 
@@ -75,10 +74,6 @@ namespace Game.WPF
         private void gameDone()
         {
 
-        }
-        static void RestartApp(int pid, string applicationName)
-        {
-            Application.Restart();
         }
 
         private void Dt_Tick(object? sender, EventArgs e)
