@@ -25,6 +25,7 @@ namespace Game.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        SoundPlayer splayer;
         GameLogic logic;
         Player player;
         TimerLogic timerLogic;
@@ -84,12 +85,17 @@ namespace Game.WPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            SoundPlayer splayer = new SoundPlayer();
+            splayer = new SoundPlayer();
             splayer.SoundLocation = "gameplaysong.wav";
             splayer.PlayLooping();
             timerLogic.StartTimer();
             display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
+            Application.Current.MainWindow.Closed += MainWindow_Closed;
+        }
 
+        private void MainWindow_Closed(object? sender, EventArgs e)
+        {
+            splayer.Stop();
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)

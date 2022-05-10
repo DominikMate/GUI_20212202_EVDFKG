@@ -28,7 +28,7 @@ namespace Game.WPF.Pages
 
         private void SkinDark(object sender, RoutedEventArgs e)
         {
-            string path = Directory.GetCurrentDirectory() + "\\playerskin.skn";
+            string path = Directory.GetCurrentDirectory() + "\\Levels\\playerskin.skn";
             StreamWriter outputFile = File.CreateText(path);
             outputFile.WriteLine(0);
             outputFile.Close();
@@ -36,7 +36,7 @@ namespace Game.WPF.Pages
 
         private void SkinWhite(object sender, RoutedEventArgs e)
         {
-            string path = Directory.GetCurrentDirectory()+ "\\playerskin.skn";
+            string path = Directory.GetCurrentDirectory() + "\\Levels\\playerskin.skn";
             StreamWriter outputFile = File.CreateText(path);
             outputFile.WriteLine(1);
             outputFile.Close();
