@@ -14,6 +14,8 @@
     <None Remove="Images\ingamebackground.mp4" />
     <None Remove="Images\laser1.bmp" />
     <None Remove="Images\laser2.bmp" />
+    <None Remove="Images\menubackground.mp4" />
+    <None Remove="Images\menubackground.wmv" />
     <None Remove="Images\player1.bmp" />
   </ItemGroup>
 
@@ -34,6 +36,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\laser2.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\menubackground.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\player1.bmp">

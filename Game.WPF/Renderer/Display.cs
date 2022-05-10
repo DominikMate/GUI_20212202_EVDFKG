@@ -93,7 +93,7 @@ namespace Game.WPF.Renderer
                 drawingContext.DrawVideo(background, new Rect(0, 0, area.Width, area.Height));
                 drawingContext.DrawRectangle(ShipBrush, null, new Rect((area.Width /2)-(PlayerSize.Width / 2)+ player.PlayerPos, (area.Height * 0.9) -(PlayerSize.Height / 2), PlayerSize.Width, PlayerSize.Height));
                 drawingContext.DrawRectangle(Brushes.Gray, new Pen(Brushes.Black, 3), new Rect((area.Width / 2) - (PlayerSize.Width / 2) + player.PlayerPos, (area.Height * 0.98), (area.Width * 0.7 / 4), area.Height / 64));
-                drawingContext.DrawRectangle(Brushes.Red, new Pen(Brushes.Black, 3), new Rect((area.Width / 2) - (PlayerSize.Width / 2) + player.PlayerPos, (area.Height * 0.98), ((area.Width*0.7 / 4) / 3) * player.HP, area.Height / 64));
+                drawingContext.DrawRectangle(Brushes.Red, new Pen(Brushes.Black, 3), new Rect((area.Width / 2) - (PlayerSize.Width / 2) + player.PlayerPos, (area.Height * 0.98), Math.Abs(((area.Width*0.7 / 4) / 3) * player.HP), area.Height / 64));
                 // drawingContext.DrawRectangle(null, new Pen(Brushes.Red, 1), new Rect((area.Width / 2) - ((area.Width / 6) / 2) + player.PlayerPos+(PlayerSize.Width / 4), (area.Height * 0.9) - ((area.Height / 6) / 2), PlayerSize.Width/2, PlayerSize.Height)); hitbox player
                 foreach (var item in player.Lasers)
                 {
@@ -114,6 +114,7 @@ namespace Game.WPF.Renderer
                 }
                 drawingContext.DrawRectangle(Brushes.Gray, new Pen(Brushes.Black, 3), new Rect(0, 0, area.Width / 4, area.Height / 32));
                 drawingContext.DrawRectangle(Brushes.Red, new Pen(Brushes.Black, 3), new Rect(0, 0, ((area.Width / 4)/120)*timerLogic.TimerPos, area.Height / 32));
+
             }
         }
     }

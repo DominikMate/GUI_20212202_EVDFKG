@@ -1,6 +1,7 @@
 ﻿using Game.WPF.Logic; //kivetel
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Media;
 using System.Text;
@@ -52,7 +53,7 @@ namespace Game.WPF
             (sender as GameLogic).Player.HP-=3;
             if ((sender as GameLogic).Player.HP <= 0)
             {
-                MessageBox.Show("Vége");
+                RestartApp();
             }
         }
 
@@ -61,7 +62,6 @@ namespace Game.WPF
             (sender as GameLogic).Player.HP-=2;
             if ((sender as GameLogic).Player.HP <= 0)
             {
-                MessageBox.Show("Vége");
             }
         }
 
@@ -70,8 +70,15 @@ namespace Game.WPF
             (sender as GameLogic).Player.HP--;
             if ((sender as GameLogic).Player.HP <= 0)
             {
-                MessageBox.Show("Vége");
             }
+        }
+        private void gameDone()
+        {
+
+        }
+        static void RestartApp(int pid, string applicationName)
+        {
+            Application.Restart();
         }
 
         private void Dt_Tick(object? sender, EventArgs e)
