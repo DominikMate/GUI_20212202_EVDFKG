@@ -5,6 +5,7 @@ using System.Linq;
 using System.Media;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -25,19 +26,43 @@ namespace Game.WPF
     {
         GameLogic logic;
         Player player;
+        TimerLogic timerLogic;
+
         public MainWindow()
         {
             InitializeComponent();
             logic = new GameLogic();
-            logic.OneDamage += Logic_OneDamage;   
+            logic.OneDamage += Logic_OneDamage;
+            logic.TwoDamage += Logic_TwoDamage;
+            logic.ThreeDamage += Logic_ThreeDamage;
             player = new Player();
-            display.SetupModel(logic,player);
+            timerLogic= new TimerLogic();
+            display.SetupModel(logic,player, timerLogic);
+            logic.SetupTimer(timerLogic);
 
             DispatcherTimer dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(50);
 
             dt.Tick += Dt_Tick;
             dt.Start();
+        }
+
+        private void Logic_ThreeDamage(object? sender, EventArgs e)
+        {
+            (sender as GameLogic).Player.HP-=3;
+            if ((sender as GameLogic).Player.HP <= 0)
+            {
+                MessageBox.Show("Vége");
+            }
+        }
+
+        private void Logic_TwoDamage(object? sender, EventArgs e)
+        {
+            (sender as GameLogic).Player.HP-=2;
+            if ((sender as GameLogic).Player.HP <= 0)
+            {
+                MessageBox.Show("Vége");
+            }
         }
 
         private void Logic_OneDamage(object? sender, EventArgs e)
@@ -60,7 +85,9 @@ namespace Game.WPF
             SoundPlayer splayer = new SoundPlayer();
             splayer.SoundLocation = "gameplaysong.wav";
             splayer.PlayLooping();
+            timerLogic.StartTimer();
             display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
+
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)

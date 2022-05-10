@@ -9,22 +9,44 @@ namespace Game.WPF.Logic
 {
     public class Enemy
     {
+        bool miniboss;
+        bool boss;
         Random random;
         Size area;
-        int Skill=1;
+        int Skill;
         public Point PEnemy { get; set; }
         public Vector Speed { get; set; }
-        public Enemy(Size area, int skill)
+        public Enemy(Size area, int skill=1, bool miniboss=false, bool boss=false)
         {
             random = new Random();
             this.area = area;
             this.Skill = skill;
+            this.miniboss = miniboss;
+            this.boss = boss;
+            if (miniboss)
+            {
+                SpawnRandomizerminiboss();
+            }
+            if (boss)
+            {
+                SpawnRandomizerboss();
+            }
             SpawnRandomizer();
         }
         public void SpawnRandomizer()
         {
-            PEnemy = new Point(random.Next(1, (int)area.Width- 200), random.Next(-20, -1));
-            Speed = new Vector(0, random.Next(Skill * 5, Skill * 10));
+            PEnemy = new Point(random.Next(1, (int)area.Width- 200), random.Next(-200, -100));
+            Speed = new Vector(0, random.Next(3, 6));
+        }
+        public void SpawnRandomizerminiboss()
+        {
+            PEnemy = new Point(random.Next(1, (int)area.Width - 200), random.Next(-200, -100));
+            Speed = new Vector(0, random.Next(2, 3));
+        }
+        public void SpawnRandomizerboss()
+        {
+            PEnemy = new Point(random.Next(1, (int)area.Width - 200), random.Next(-200, -100));
+            Speed = new Vector(0, random.Next(1, 3));
         }
 
         public bool Move(Size area)

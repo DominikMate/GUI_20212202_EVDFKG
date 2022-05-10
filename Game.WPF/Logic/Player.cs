@@ -18,7 +18,7 @@ namespace Game.WPF.Logic
         {
             HP = 3;
             Lasers = new List<Laser>();
-            Speed = new Vector(35,0);
+            Speed = new Vector(40,0);
             NextShoot = true;
         }
 

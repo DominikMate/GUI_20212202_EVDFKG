@@ -11,10 +11,15 @@ namespace Game.WPF.Logic
 
         List<Enemy> Enemys { get; set; }
 
-        public void SetupSizes(Size area);
+        void SetupSizes(Size area);
 
-        public event EventHandler Changed;
+        event EventHandler Changed;
 
-        public void SetupPlayer(IPlayer player);
+        void SetupPlayer(IPlayer player);
+
+        List<Enemy> miniEnemys { get; set; }
+        List<Enemy> bossEnemys { get; set; }
+        event EventHandler TwoDamage;
+        event EventHandler ThreeDamage;
     }
 }

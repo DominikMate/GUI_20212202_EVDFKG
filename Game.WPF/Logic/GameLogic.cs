@@ -13,13 +13,24 @@ namespace Game.WPF.Logic
     {
         public event EventHandler Changed;
         public event EventHandler OneDamage;
+        public event EventHandler TwoDamage;
+        public event EventHandler ThreeDamage;
         Size area;
         Size PlayerSize;
+        ITimerLogic timer;
+        Random random;
 
         public List<Enemy> Enemys { get; set; }
+        public List<Enemy> miniEnemys { get; set; }
+        public List<Enemy> bossEnemys { get; set; }
+
+        public int EnemyKillCounter { get; set; }
+        public int miniEnemyKillCounter { get; set; }
+        public int bossEnemyKillCounter { get; set; }
         public IPlayer Player;
         public class MapData
         {
+            public int levelnum { get; set; }
             public int enemyskill { get; set; }
             public int heartspawnchance { get; set; }
             public bool miniboss { get; set; }
@@ -29,14 +40,16 @@ namespace Game.WPF.Logic
         }
         public GameLogic()
         {
-
+            random = new Random();
             MapDatas = new List<MapData>();
-            CompletedLevels(Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"), "complevels.lvl").First());
+            CompletedLevels(Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"), "complevels.lvlc").First());
+
             var path = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"), "*.lvl");
             foreach (var item in path)
             {
                 LoadMapData(item);
             }
+            MapDatas.Sort((x, y) => x.levelnum.CompareTo(y.levelnum));
         }
         //public enum GameItem
         //{
@@ -44,28 +57,48 @@ namespace Game.WPF.Logic
         //}
 
         private int maps;
+        private int loadedlevel;
         //public GameItem[,] GameMatrix { get; set; }     //ebben tárolódik az enemy, player, jutalom szívek, pozíciói
         public int Maps { get => maps; set => maps = value; }
+        public int Loadedlevel { get => loadedlevel; set => loadedlevel = value; }
 
         public List<MapData> MapDatas { get; set; } //a pályák generálásához szükséges adatokat tartalmazza
 
         private void CompletedLevels(string path) //ez a menüben lévő pályákat kéri be, hogy melyek azok amiket már megcsináltunk
         {
-            int lvl = 1;
+            int lvl = 0;
             if (int.TryParse(File.ReadAllText(path), out lvl) && lvl >= 1 && lvl <= 10)
             {
-                maps = lvl;
+                maps = lvl-1;
             }
             else
             {
-                maps = 1;
+                maps = 0;
             }
-
+        }
+        public void SetupTimer(ITimerLogic timer)
+        {
+            this.timer = timer;
+        }     
+        private void LoadedLevel(string path) //ez a menüben lévő pályákat kéri be, hogy melyek azok amiket már megcsináltunk
+        {
+            int lvl = 0;
+            if (int.TryParse(File.ReadAllText(path), out lvl) && lvl >= 1 && lvl <= 10)
+            {
+                loadedlevel = lvl-1;
+            }
+            else
+            {
+                loadedlevel = 0;
+            }
         }
         private void LoadMapData(string path)
         {
             MapData newmap = new MapData();
             string[] lines = File.ReadAllLines(path);
+            newmap.levelnum = int.Parse(path.Split(new string[] { "level" },
+                StringSplitOptions.None)[1].Split(new string[] { ".lvl" },
+                StringSplitOptions.None)[0]);
             for (int i = 0; i < lines.Length; i++)
             {
                 string prop = lines[i].Split(':')[0];
@@ -90,6 +123,7 @@ namespace Game.WPF.Logic
                         break;
                 }
             }
+
             MapDatas.Add(newmap);
         }
 
@@ -112,9 +146,26 @@ namespace Game.WPF.Logic
             this.PlayerSize.Width = area.Width / 6;
             this.PlayerSize.Height = area.Height / 6;
             Enemys = new List<Enemy>();
-            for (int i = 0; i < 4* MapDatas[maps].enemyskill; i++)
+            miniEnemys = new List<Enemy>();
+            bossEnemys = new List<Enemy>();
+            /*if (MapDatas[loadedlevel].miniboss && timer.TimerPos > random.Next(3000,8000))
             {
-                Enemys.Add(new Enemy(area, MapDatas[maps].enemyskill));
+                for (int i = 0; i < MapDatas[loadedlevel].enemyskill; i++)
+                {
+                    miniEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill, MapDatas[loadedlevel].miniboss, false));
+                }
+            }
+            if (MapDatas[loadedlevel].boss && timer.TimerPos > 80000)
+            {
+                for (int i = 0; i < MapDatas[loadedlevel].enemyskill; i++)
+                {
+                    bossEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill, false, MapDatas[loadedlevel].boss));
+                }
+            timer.TimerPos != 0 
+            }*/
+            for (int i = 0; i < MapDatas[loadedlevel].enemyskill; i++)
+            {
+                Enemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill, false, false));
             }
         }
         public void SetupPlayer(IPlayer player)
@@ -123,6 +174,10 @@ namespace Game.WPF.Logic
         }
         public void TimeStep(Size area)
         {
+            /*if (MapDatas[loadedlevel].miniboss&&timer.TimerPos>30000 && timer.TimerPos < 60000)
+            {
+                Enemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill));
+            }*/
             for (int i = 0; i < Enemys.Count; i++)
             {
                 bool inside = Enemys[i].Move(area);
@@ -130,7 +185,7 @@ namespace Game.WPF.Logic
                 {
                     OneDamage?.Invoke(this, null);
                     Enemys.RemoveAt(i);
-                    Enemys.Add(new Enemy(area, MapDatas[maps].enemyskill));
+                    Enemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill));
                 }
                 else
                 {
@@ -140,7 +195,7 @@ namespace Game.WPF.Logic
                     if (enemyRect.IntersectsWith(shipRect))
                     {
                         Enemys.RemoveAt(i);
-                        Enemys.Add(new Enemy(area, MapDatas[maps].enemyskill));
+                        Enemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill));
                         OneDamage?.Invoke(this, null);
 
                     }
@@ -152,7 +207,75 @@ namespace Game.WPF.Logic
                         {
                             Player.Lasers.Remove(item);
                             Enemys.RemoveAt(i);
-                            Enemys.Add(new Enemy(area, MapDatas[maps].enemyskill));
+                            Enemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill));
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < miniEnemys.Count; i++)
+            {
+                bool inside = miniEnemys[i].Move(area);
+                if (!inside)
+                {
+                    TwoDamage?.Invoke(this, null);
+                    miniEnemys.RemoveAt(i);
+                    miniEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill, true, false));
+                }
+                else
+                {
+                    Rect enemyRect = new Rect(miniEnemys[i].PEnemy.X + (PlayerSize.Width / 4), miniEnemys[i].PEnemy.Y, (PlayerSize.Width / 2), PlayerSize.Height);
+                    Rect shipRect = new Rect((area.Width / 2) - ((area.Width / 6) / 2) + Player.PlayerPos + (PlayerSize.Width / 4), (area.Height * 0.9) - ((area.Height / 6) / 2), PlayerSize.Width / 2, PlayerSize.Height);
+
+                    if (enemyRect.IntersectsWith(shipRect))
+                    {
+                        miniEnemys.RemoveAt(i);
+                        miniEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill));
+                        TwoDamage?.Invoke(this, null);
+
+                    }
+                    foreach (var item in Player.Lasers.ToList())
+                    {
+                        Rect laserRect = new Rect(item.LaserPoint.X, item.LaserPoint.Y, (area.Width / 96), (area.Height / 16));
+
+                        if (laserRect.IntersectsWith(enemyRect))
+                        {
+                            Player.Lasers.Remove(item);
+                            miniEnemys.RemoveAt(i);
+                            miniEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill,true, false));
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < bossEnemys.Count; i++)
+            {
+                bool inside = bossEnemys[i].Move(area);
+                if (!inside)
+                {
+                    ThreeDamage?.Invoke(this, null);
+                    bossEnemys.RemoveAt(i);
+                    bossEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill,false, true));
+                }
+                else
+                {
+                    Rect enemyRect = new Rect(bossEnemys[i].PEnemy.X + (PlayerSize.Width / 4), bossEnemys[i].PEnemy.Y, (PlayerSize.Width / 2), PlayerSize.Height);
+                    Rect shipRect = new Rect((area.Width / 2) - ((area.Width / 6) / 2) + Player.PlayerPos + (PlayerSize.Width / 4), (area.Height * 0.9) - ((area.Height / 6) / 2), PlayerSize.Width / 2, PlayerSize.Height);
+
+                    if (enemyRect.IntersectsWith(shipRect))
+                    {
+                        bossEnemys.RemoveAt(i);
+                        bossEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill, false, true));
+                        ThreeDamage?.Invoke(this, null);
+
+                    }
+                    foreach (var item in Player.Lasers.ToList())
+                    {
+                        Rect laserRect = new Rect(item.LaserPoint.X, item.LaserPoint.Y, (area.Width / 96), (area.Height / 16));
+
+                        if (laserRect.IntersectsWith(enemyRect))
+                        {
+                            Player.Lasers.Remove(item);
+                            bossEnemys.RemoveAt(i);
+                            bossEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill));
                         }
                     }
                 }
