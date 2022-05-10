@@ -23,7 +23,7 @@ namespace Game.WPF.Logic
         }
         public void SpawnRandomizer()
         {
-            PEnemy = new Point(random.Next(1, (int)area.Width-50), random.Next(-20, -1));
+            PEnemy = new Point(random.Next(1, (int)area.Width- 200), random.Next(-20, -1));
             Speed = new Vector(0, random.Next(Skill * 5, Skill * 10));
         }
 
@@ -32,7 +32,7 @@ namespace Game.WPF.Logic
             Point newPEnemy =
         new Point(PEnemy.X, PEnemy.Y + (int)Speed.Y);
             if (newPEnemy.X >= 0 &&
-                newPEnemy.X <= area.Width-(area.Width*0.1) &&
+                newPEnemy.X <= area.Width-200 &&
                 newPEnemy.Y <= area.Height)
             {
                 PEnemy = newPEnemy;

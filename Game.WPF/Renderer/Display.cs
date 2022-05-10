@@ -69,14 +69,16 @@ namespace Game.WPF.Renderer
             if (area.Width>0 && area.Height>0 && model!=null)
             {
                 drawingContext.DrawVideo(background, new Rect(0, 0, area.Width, area.Height));
-                drawingContext.DrawRectangle(ShipBrush,null, new Rect((area.Width /2)-(PlayerSize.Width / 2)+ player.PlayerPos, (area.Height * 0.9) -(PlayerSize.Height / 2), PlayerSize.Width, PlayerSize.Height));
+                drawingContext.DrawRectangle(ShipBrush, null, new Rect((area.Width /2)-(PlayerSize.Width / 2)+ player.PlayerPos, (area.Height * 0.9) -(PlayerSize.Height / 2), PlayerSize.Width, PlayerSize.Height));
+               // drawingContext.DrawRectangle(null, new Pen(Brushes.Red, 1), new Rect((area.Width / 2) - ((area.Width / 6) / 2) + player.PlayerPos+(PlayerSize.Width / 4), (area.Height * 0.9) - ((area.Height / 6) / 2), PlayerSize.Width/2, PlayerSize.Height)); hitbox player
                 foreach (var item in player.Lasers)
                 {
-                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "laser1.bmp"), UriKind.RelativeOrAbsolute))),null,new Rect(item.LaserPoint.X,item.LaserPoint.Y, (area.Width / 96), (area.Height / 16)));
+                    drawingContext.DrawRectangle(new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "laser1.bmp"), UriKind.RelativeOrAbsolute))), null, new Rect(item.LaserPoint.X,item.LaserPoint.Y, (area.Width / 96), (area.Height / 16)));
                 }
                 foreach (var item in model.Enemys)
                 {
                     drawingContext.DrawRectangle(EnemyBrush, null, new Rect(item.PEnemy.X, item.PEnemy.Y, PlayerSize.Width, PlayerSize.Height));
+                    //drawingContext.DrawRectangle(null, new Pen(Brushes.Red, 1), new Rect(item.PEnemy.X + (PlayerSize.Width / 4), item.PEnemy.Y, (PlayerSize.Width/2), PlayerSize.Height)); hitbox ellenség
                 }
             }
         }

@@ -14,6 +14,7 @@ namespace Game.WPF.Logic
         public event EventHandler Changed;
         public event EventHandler OneDamage;
         Size area;
+        Size PlayerSize;
 
         public List<Enemy> Enemys { get; set; }
         public IPlayer Player;
@@ -28,6 +29,7 @@ namespace Game.WPF.Logic
         }
         public GameLogic()
         {
+
             MapDatas = new List<MapData>();
             CompletedLevels(Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"), "complevels.lvl").First());
             var path = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"), "*.lvl");
@@ -106,12 +108,9 @@ namespace Game.WPF.Logic
 
         public void SetupSizes(Size area)
         {
-
-            SoundPlayer splayer = new SoundPlayer();
-            splayer.SoundLocation = "gameplaysong.wav";
-            splayer.PlayLooping();
-
             this.area = area;
+            this.PlayerSize.Width = area.Width / 6;
+            this.PlayerSize.Height = area.Height / 6;
             Enemys = new List<Enemy>();
             for (int i = 0; i < 4* MapDatas[maps].enemyskill; i++)
             {
@@ -129,18 +128,19 @@ namespace Game.WPF.Logic
                 bool inside = Enemys[i].Move(area);
                 if (!inside)
                 {
+                    OneDamage?.Invoke(this, null);
                     Enemys.RemoveAt(i);
                     Enemys.Add(new Enemy(area, MapDatas[maps].enemyskill));
                 }
                 else
                 {
-                    Rect enemyRect = new Rect(Enemys[i].PEnemy.X + 50, Enemys[i].PEnemy.Y, (area.Width / 10), (area.Height / 6));
-                    Rect shipRect = new Rect((area.Width / 2) - ((area.Width / 6) / 2) + Player.PlayerPos, (area.Height * 0.9) - ((area.Height / 6) / 2), (area.Width / 6), (area.Height / 6));
+                    Rect enemyRect = new Rect(Enemys[i].PEnemy.X + (PlayerSize.Width / 4), Enemys[i].PEnemy.Y, (PlayerSize.Width / 2), PlayerSize.Height);
+                    Rect shipRect = new Rect((area.Width / 2) - ((area.Width / 6) / 2) + Player.PlayerPos + (PlayerSize.Width / 4), (area.Height * 0.9) - ((area.Height / 6) / 2), PlayerSize.Width / 2, PlayerSize.Height);
+
                     if (enemyRect.IntersectsWith(shipRect))
                     {
                         Enemys.RemoveAt(i);
                         Enemys.Add(new Enemy(area, MapDatas[maps].enemyskill));
-                        Player.HP--;
                         OneDamage?.Invoke(this, null);
 
                     }

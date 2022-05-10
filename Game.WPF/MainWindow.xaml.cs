@@ -42,6 +42,7 @@ namespace Game.WPF
 
         private void Logic_OneDamage(object? sender, EventArgs e)
         {
+            (sender as GameLogic).Player.HP--;
             if ((sender as GameLogic).Player.HP <= 0)
             {
                 MessageBox.Show("Vége");
@@ -56,7 +57,9 @@ namespace Game.WPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            SoundPlayer splayer = new SoundPlayer();
+            splayer.SoundLocation = "gameplaysong.wav";
+            splayer.PlayLooping();
             display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
         }
 
