@@ -17,7 +17,7 @@ namespace Game.WPF.Logic
 
         public TimerLogic()
         {
-            time = 12;
+            time = 120;
             TimerPos = 0;
         }
         public void StartTimer()
