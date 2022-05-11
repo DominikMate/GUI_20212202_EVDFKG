@@ -19,6 +19,7 @@
     <None Remove="Images\player1.bmp" />
     <None Remove="Images\player2.bmp" />
     <None Remove="Levels\complevels.lvlc" />
+    <None Remove="Levels\gameplaysong.wav" />
     <None Remove="Levels\level1.lvl" />
     <None Remove="Levels\level10.lvl" />
     <None Remove="Levels\level2.lvl" />
@@ -72,6 +73,9 @@
     </Content>
     <Content Include="Levels\complevels.lvlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\gameplaysong.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Levels\level1.lvl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -120,7 +120,7 @@ namespace Game.WPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             splayer = new SoundPlayer();
-            splayer.SoundLocation = "gameplaysong.wav";
+            splayer.SoundLocation = Directory.GetCurrentDirectory() + "\\Levels\\gameplaysong.wav";
             splayer.PlayLooping();
             timerLogic.StartTimer();
             display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
