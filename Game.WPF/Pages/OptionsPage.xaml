@@ -1,0 +1,41 @@
+﻿<Page x:Class="Game.WPF.Pages.OptionsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Game.WPF.Pages"
+      mc:Ignorable="d" 
+      Height="720" Width="1280"
+      Title="OptionsPage"
+      FontFamily="impact">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" FontSize="100"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="Options" Foreground="White"/>
+
+
+
+        <TextBlock Grid.Row="1" FontSize="80" Text="Skin:" Foreground="White" VerticalAlignment="Center"/>
+
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Orientation="Horizontal">
+            <Button Background="Gray" BorderBrush="Black" Foreground="White" Margin="30" Click="SkinWhite">
+                <Image Source="/texture/player2.bmp" />
+            </Button>
+            <Button Background="Gray" BorderBrush="Black" Foreground="White" Margin="30" Click="SkinDark">
+                <Image Source="/texture/player1.bmp" />
+            </Button>
+        </StackPanel>
+
+        <Button Grid.Row="3" Background="Transparent" BorderBrush="Black" Content="Back to Menu" FontSize="50" Foreground="White"  Click="BackToMenu" />
+
+
+        <Grid.Background>
+            <ImageBrush ImageSource="/texture/background.png" ></ImageBrush>
+        </Grid.Background>
+    </Grid>
+</Page>
