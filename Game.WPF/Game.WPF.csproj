@@ -30,6 +30,7 @@
     <None Remove="Levels\level7.lvl" />
     <None Remove="Levels\level8.lvl" />
     <None Remove="Levels\level9.lvl" />
+    <None Remove="Levels\playerskin.skn" />
     <None Remove="texture\background.png" />
     <None Remove="texture\darthpath_menu.mp3" />
     <None Remove="texture\enemy1.bmp" />
@@ -106,6 +107,9 @@
     </Content>
     <Content Include="Levels\level9.lvl">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\playerskin.skn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="texture\background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

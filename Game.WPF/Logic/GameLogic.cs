@@ -16,6 +16,7 @@ namespace Game.WPF.Logic
         public event EventHandler TwoDamage;
         public event EventHandler ThreeDamage;
         public event EventHandler levelchanged;
+        public event EventHandler mapDone;
         Size area;
         Size PlayerSize;
         ITimerLogic timer;
@@ -68,14 +69,14 @@ namespace Game.WPF.Logic
 
         private void CompletedLevels(string path) //ez a menüben lévő pályákat kéri be, hogy melyek azok amiket már megcsináltunk
         {
-            int lvl = 0;
+            int lvl = 1;
             if (int.TryParse(File.ReadAllText(path), out lvl) && lvl >= 1 && lvl <= 10)
             {
-                maps = lvl-1;
+                maps = lvl;
             }
             else
             {
-                maps = 0;
+                maps = 1;
             }
         }
         public void SetupTimer(ITimerLogic timer)
@@ -162,6 +163,10 @@ namespace Game.WPF.Logic
         }
         public void TimeStep(Size area)
         {
+            if (timer.TimerPos==timer.time)
+            {
+                mapDone?.Invoke(this, null);
+            }
             if (MapDatas[loadedlevel].miniboss && timer.TimerPos == 12000 && timer.TimerPos == 40000)
             {
                 for (int i = 0; i < MapDatas[loadedlevel].enemyskill; i++)

@@ -1,4 +1,5 @@
 ﻿using Game.WPF.Logic; //kivetel
+using Game.WPF.Pages;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -40,12 +41,12 @@ namespace Game.WPF
             logic.OneDamage += Logic_OneDamage;
             logic.TwoDamage += Logic_TwoDamage;
             logic.ThreeDamage += Logic_ThreeDamage;
+            logic.mapDone += Logic_mapDone;
 
             player = new Player();
             timerLogic= new TimerLogic();
             display.SetupModel(logic,player, timerLogic);
             logic.SetupTimer(timerLogic);
-            timerLogic.Timmer_Game_Win += TimerLogic_Timmer_Game_Win;
             DispatcherTimer dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(50);
 
@@ -54,16 +55,23 @@ namespace Game.WPF
 
         }
 
-        private void TimerLogic_Timmer_Game_Win(object? sender, EventArgs e)
+        private void Logic_mapDone(object? sender, EventArgs e)
         {
-            string path = Directory.GetCurrentDirectory() + "\\Levels\\complevels.lvlc";
-            StreamWriter outputFile = File.CreateText(path);
-            if (logic.Maps < 10)
+            if (fix)
             {
-                outputFile.WriteLine(logic.Maps++);
+                string path = Directory.GetCurrentDirectory() + "\\Levels\\complevels.lvlc";
+                StreamWriter outputFile = File.CreateText(path);
+                if (logic.Maps < 10)
+                {
+                    int i = logic.Maps;
+                    i++;
+                    logic.Maps++;
+                    outputFile.WriteLine(i);
+                }
+                outputFile.Close();
+                gameDone();
             }
-            outputFile.Close();
-            gameDone();
+
         }
         private void Logic_ThreeDamage(object? sender, EventArgs e)
         {

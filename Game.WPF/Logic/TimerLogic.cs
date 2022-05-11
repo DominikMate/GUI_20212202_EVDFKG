@@ -9,6 +9,7 @@ namespace Game.WPF.Logic
 {
     public class TimerLogic : ITimerLogic
     {
+        public int time { get; set; }
         public int TimerPos { get; set; }
         public event EventHandler Timmer_Game_Win;
         //public event EventHandler Timer_Game_Lose;
@@ -16,6 +17,7 @@ namespace Game.WPF.Logic
 
         public TimerLogic()
         {
+            time = 2;
             TimerPos = 0;
         }
         public void StartTimer()
@@ -28,7 +30,7 @@ namespace Game.WPF.Logic
 
         private void MyTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            if (TimerPos == 120)
+            if (TimerPos == time)
             {
                 MyTimer.Enabled = false;
                 Timmer_Game_Win?.Invoke(this, null);

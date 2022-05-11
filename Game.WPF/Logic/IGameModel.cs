@@ -22,7 +22,7 @@ namespace Game.WPF.Logic
         event EventHandler TwoDamage;
         event EventHandler ThreeDamage;
         event EventHandler levelchanged;
-
+        public event EventHandler mapDone;
         int EnemyKillCounter { get; set; }
         int miniEnemyKillCounter { get; set; }
         int bossEnemyKillCounter { get; set; }

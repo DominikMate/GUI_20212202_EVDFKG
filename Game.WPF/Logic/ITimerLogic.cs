@@ -9,6 +9,7 @@ namespace Game.WPF.Logic
         event EventHandler Timmer_Game_Win;
         int TimerPos { get; set; }
         Timer MyTimer { get; set; }
+        int time { get; set; }
         //void StartTimer();
     }
 }
