@@ -13,6 +13,7 @@ namespace Game.WPF.Renderer
 {
     internal class Display : FrameworkElement
     {
+        bool fix;
         Size area;
         Size PlayerSize;
         MediaPlayer background;
@@ -26,15 +27,11 @@ namespace Game.WPF.Renderer
             this.model = model;
             this.player = player;
             this.timerLogic = timerLogic;
-            this.timerLogic.Timmer_Game_Win += TimerLogic_Timmer_Game_Win;
             this.player.Changed += (sender, eventargs) => this.InvalidateVisual();
             skinloader(Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"), "playerskin.skn").First());
         }
 
-        public void TimerLogic_Timmer_Game_Win(object? sender, EventArgs e)
-        {
-            MessageBox.Show("Játék Vége");
-        }
+
         private void skinloader(string path)
         {
             skin = "player1.bmp";
@@ -87,6 +84,7 @@ namespace Game.WPF.Renderer
         }
         public Display()
         {
+            fix = true;
             background = new MediaPlayer();
             background.Open(new Uri(Path.Combine("Images", "ingamebackground.mp4"), UriKind.RelativeOrAbsolute));
             background.MediaEnded += Player_MediaEnded;

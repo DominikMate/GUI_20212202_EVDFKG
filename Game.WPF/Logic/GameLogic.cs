@@ -15,6 +15,7 @@ namespace Game.WPF.Logic
         public event EventHandler OneDamage;
         public event EventHandler TwoDamage;
         public event EventHandler ThreeDamage;
+        public event EventHandler levelchanged;
         Size area;
         Size PlayerSize;
         ITimerLogic timer;
@@ -43,6 +44,7 @@ namespace Game.WPF.Logic
             random = new Random();
             MapDatas = new List<MapData>();
             CompletedLevels(Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"), "complevels.lvlc").First());
+            LoadedLevel(Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"), "loadedlevel.lvlc").First());
 
             var path = Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"), "*.lvl");
             foreach (var item in path)
@@ -149,7 +151,7 @@ namespace Game.WPF.Logic
             miniEnemys = new List<Enemy>();
             bossEnemys = new List<Enemy>();
 
-            for (int i = 0; i < MapDatas[loadedlevel].enemyskill; i++)
+            for (int i = 0; i < MapDatas[loadedlevel].enemyskill*2; i++)
             {
                 Enemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill, false, false));
             }
@@ -201,6 +203,7 @@ namespace Game.WPF.Logic
 
                         if (laserRect.IntersectsWith(enemyRect))
                         {
+                            EnemyKillCounter++;
                             Player.Lasers.Remove(item);
                             Enemys.RemoveAt(i);
                             Enemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill));
@@ -235,6 +238,7 @@ namespace Game.WPF.Logic
 
                         if (laserRect.IntersectsWith(enemyRect))
                         {
+                            miniEnemyKillCounter++;
                             Player.Lasers.Remove(item);
                             miniEnemys.RemoveAt(i);
                             miniEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill,true, false));
@@ -269,6 +273,7 @@ namespace Game.WPF.Logic
 
                         if (laserRect.IntersectsWith(enemyRect))
                         {
+                            bossEnemyKillCounter++;
                             Player.Lasers.Remove(item);
                             bossEnemys.RemoveAt(i);
                             bossEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill));

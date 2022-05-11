@@ -19,29 +19,29 @@
 
         <TextBlock Grid.Row="0" FontSize="100"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="Levels" Foreground="White"/>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Level 1" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White" VerticalAlignment="Center"  Click="Level1_Click"/>
+            <Button x:Name="level1" Content="Level 1" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White" VerticalAlignment="Center"  Click="Level1_Click"/>
 
-            <Button Content="Level 2" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White"  VerticalAlignment="Center" Click="Level2_Click"/>
+            <Button x:Name="level2"  Content="Level 2" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White"  VerticalAlignment="Center" Click="Level2_Click"/>
 
-            <Button Content="Level 3" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White" VerticalAlignment="Center"  Click="Level3_Click"/>
+            <Button x:Name="level3" Content="Level 3" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White" VerticalAlignment="Center"  Click="Level3_Click"/>
 
-            <Button Content="Level 4" Background="Gray" FontSize="30" Padding="20" Margin="10" Foreground="White" VerticalAlignment="Center"  Click="Level4_Click"/>
+            <Button x:Name="level4" Content="Level 4" Background="Gray" FontSize="30" Padding="20" Margin="10" Foreground="White" VerticalAlignment="Center"  Click="Level4_Click"/>
 
 
-            <Button Content="Level 5" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White" VerticalAlignment="Center"   Click="Level5_Click"/>
+            <Button x:Name="level5" Content="Level 5" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White" VerticalAlignment="Center"   Click="Level5_Click"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Level 6" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White" VerticalAlignment="Center"  Click="Level6_Click"/>
+            <Button x:Name="level6" Content="Level 6" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White" VerticalAlignment="Center"  Click="Level6_Click"/>
 
-            <Button Content="Level 7" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White"  VerticalAlignment="Center" Click="Level7_Click"/>
+            <Button x:Name="level7" Content="Level 7" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White"  VerticalAlignment="Center" Click="Level7_Click"/>
 
-            <Button Content="Level 8" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White" VerticalAlignment="Center"  Click="Level8_Click"/>
+            <Button x:Name="level8" Content="Level 8" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White" VerticalAlignment="Center"  Click="Level8_Click"/>
 
-            <Button Content="Level 9" Background="Gray" FontSize="30" Padding="20" Margin="10" Foreground="White" VerticalAlignment="Center"  Click="Level9_Click"/>
+            <Button x:Name="level9" Content="Level 9" Background="Gray" FontSize="30" Padding="20" Margin="10" Foreground="White" VerticalAlignment="Center"  Click="Level9_Click"/>
 
 
-            <Button Content="Level 10" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White" VerticalAlignment="Center"   Click="Level10_Click"/>
+            <Button x:Name="level10" Content="Level 10" Background="Gray" FontSize="30" Padding="20" Margin="20" Foreground="White" VerticalAlignment="Center"   Click="Level10_Click"/>
         </StackPanel>
 
         <Button Foreground="White" Background="Gray" Padding="20" Content="Back to Menu" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" FontSize="60" Click="BackToMenu"/>

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Text;
@@ -25,6 +26,7 @@ namespace Game.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool fix;
         SoundPlayer splayer;
         GameLogic logic;
         Player player;
@@ -32,49 +34,81 @@ namespace Game.WPF
 
         public MainWindow()
         {
+            fix = true;
             InitializeComponent();
             logic = new GameLogic();
             logic.OneDamage += Logic_OneDamage;
             logic.TwoDamage += Logic_TwoDamage;
             logic.ThreeDamage += Logic_ThreeDamage;
+
             player = new Player();
             timerLogic= new TimerLogic();
             display.SetupModel(logic,player, timerLogic);
             logic.SetupTimer(timerLogic);
-
+            timerLogic.Timmer_Game_Win += TimerLogic_Timmer_Game_Win;
             DispatcherTimer dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromMilliseconds(50);
 
             dt.Tick += Dt_Tick;
             dt.Start();
+
         }
 
+        private void TimerLogic_Timmer_Game_Win(object? sender, EventArgs e)
+        {
+            string path = Directory.GetCurrentDirectory() + "\\Levels\\complevels.lvlc";
+            StreamWriter outputFile = File.CreateText(path);
+            if (logic.Maps < 10)
+            {
+                outputFile.WriteLine(logic.Maps++);
+            }
+            outputFile.Close();
+            gameDone();
+        }
         private void Logic_ThreeDamage(object? sender, EventArgs e)
         {
-            (sender as GameLogic).Player.HP-=3;
-            if ((sender as GameLogic).Player.HP <= 0)
+            if (fix)
             {
-            }
+                (sender as GameLogic).Player.HP -= 3;
+                if ((sender as GameLogic).Player.HP <= 0)
+                {
+                    gameDone();
+                }
+           }
         }
 
         private void Logic_TwoDamage(object? sender, EventArgs e)
         {
-            (sender as GameLogic).Player.HP-=2;
-            if ((sender as GameLogic).Player.HP <= 0)
+            if (fix)
             {
+                (sender as GameLogic).Player.HP -= 2;
+                if ((sender as GameLogic).Player.HP <= 0)
+                {
+                    gameDone();
+                }
             }
         }
 
         private void Logic_OneDamage(object? sender, EventArgs e)
         {
-            (sender as GameLogic).Player.HP--;
-            if ((sender as GameLogic).Player.HP <= 0)
+            if (fix)
             {
+                (sender as GameLogic).Player.HP--;
+                if ((sender as GameLogic).Player.HP <= 0)
+                {
+                    gameDone();
+                }
             }
+
         }
         private void gameDone()
         {
-
+             var result = MessageBox.Show("tie fighter: "+logic.EnemyKillCounter+ "| tie fighter miniboss: "+logic.miniEnemyKillCounter+ "| tie fighter boss: "+logic.bossEnemyKillCounter, "Játék eredmények", MessageBoxButton.OK);
+            if (result == MessageBoxResult.OK)
+            {
+                fix = false;
+                this.Close();
+            }
         }
 
         private void Dt_Tick(object? sender, EventArgs e)
@@ -90,6 +124,7 @@ namespace Game.WPF
             splayer.PlayLooping();
             timerLogic.StartTimer();
             display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
+            this.Closed += MainWindow_Closed;
             Application.Current.MainWindow.Closed += MainWindow_Closed;
         }
 

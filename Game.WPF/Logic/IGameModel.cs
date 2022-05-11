@@ -21,5 +21,10 @@ namespace Game.WPF.Logic
         List<Enemy> bossEnemys { get; set; }
         event EventHandler TwoDamage;
         event EventHandler ThreeDamage;
+        event EventHandler levelchanged;
+
+        int EnemyKillCounter { get; set; }
+        int miniEnemyKillCounter { get; set; }
+        int bossEnemyKillCounter { get; set; }
     }
 }

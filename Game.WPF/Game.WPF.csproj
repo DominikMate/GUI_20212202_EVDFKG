@@ -17,6 +17,18 @@
     <None Remove="Images\menubackground.mp4" />
     <None Remove="Images\menubackground.wmv" />
     <None Remove="Images\player1.bmp" />
+    <None Remove="Images\player2.bmp" />
+    <None Remove="Levels\complevels.lvlc" />
+    <None Remove="Levels\level1.lvl" />
+    <None Remove="Levels\level10.lvl" />
+    <None Remove="Levels\level2.lvl" />
+    <None Remove="Levels\level3.lvl" />
+    <None Remove="Levels\level4.lvl" />
+    <None Remove="Levels\level5.lvl" />
+    <None Remove="Levels\level6.lvl" />
+    <None Remove="Levels\level7.lvl" />
+    <None Remove="Levels\level8.lvl" />
+    <None Remove="Levels\level9.lvl" />
     <None Remove="texture\background.png" />
     <None Remove="texture\darthpath_menu.mp3" />
     <None Remove="texture\enemy1.bmp" />
@@ -55,6 +67,42 @@
     <Content Include="Images\player1.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\player2.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\complevels.lvlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level1.lvl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level10.lvl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level2.lvl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level3.lvl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level4.lvl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level5.lvl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level6.lvl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level7.lvl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level8.lvl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Levels\level9.lvl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="texture\background.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -83,9 +131,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="texture\player1.bmp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\player2.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="texture\player2.bmp">
