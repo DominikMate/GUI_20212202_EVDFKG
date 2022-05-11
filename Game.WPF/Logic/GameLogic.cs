@@ -20,6 +20,8 @@ namespace Game.WPF.Logic
         Size area;
         Size PlayerSize;
         ITimerLogic timer;
+        bool spawnfix1;
+        bool spawnfix2;
         Random random;
 
         public List<Enemy> Enemys { get; set; }
@@ -42,6 +44,8 @@ namespace Game.WPF.Logic
         }
         public GameLogic()
         {
+            spawnfix1 = true;
+            spawnfix2 = true;
             random = new Random();
             MapDatas = new List<MapData>();
             CompletedLevels(Directory.GetFiles(Path.Combine(Directory.GetCurrentDirectory(), "Levels"), "complevels.lvlc").First());
@@ -167,15 +171,19 @@ namespace Game.WPF.Logic
             {
                 mapDone?.Invoke(this, null);
             }
-            if (MapDatas[loadedlevel].miniboss && timer.TimerPos == 12000 && timer.TimerPos == 40000)
+            // bug: timer.TimerPos == 80 &&
+            if (MapDatas[loadedlevel].miniboss && timer.TimerPos == 60 && spawnfix2)
             {
+                 spawnfix2 = false;
                 for (int i = 0; i < MapDatas[loadedlevel].enemyskill; i++)
                 {
                     miniEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill, MapDatas[loadedlevel].miniboss, false));
                 }
             }
-            if (MapDatas[loadedlevel].boss && timer.TimerPos == 80000)
+            //bug: timer.TimerPos == 80
+            if (MapDatas[loadedlevel].boss && timer.TimerPos == 100 && spawnfix1)
             {
+                spawnfix1= false;
                 for (int i = 0; i < MapDatas[loadedlevel].enemyskill; i++)
                 {
                     bossEnemys.Add(new Enemy(area, MapDatas[loadedlevel].enemyskill, false, MapDatas[loadedlevel].boss));

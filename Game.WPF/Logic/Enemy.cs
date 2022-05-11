@@ -23,6 +23,10 @@ namespace Game.WPF.Logic
             this.Skill = skill;
             this.miniboss = miniboss;
             this.boss = boss;
+            if (!miniboss && !boss)
+            {
+                SpawnRandomizer();
+            }
             if (miniboss)
             {
                 SpawnRandomizerminiboss();
@@ -31,7 +35,7 @@ namespace Game.WPF.Logic
             {
                 SpawnRandomizerboss();
             }
-            SpawnRandomizer();
+            //SpawnRandomizer();
         }
         public void SpawnRandomizer()
         {
